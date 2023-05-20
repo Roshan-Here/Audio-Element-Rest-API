@@ -1,5 +1,6 @@
 from django.urls import path
+from . import views
 
 urlpatterns = [
-    # path('',name='VideoMakerpage')
+    path('',views.AudioCreateApiView.as_view(),name='VideoMakerpage')
 ]

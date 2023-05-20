@@ -2,6 +2,15 @@ from django.db import models
 
 # Create your models here.
 
+
+class Duration(models.Model):
+    start_time = models.PositiveIntegerField(blank=True,null=True)
+    end_time = models.PositiveIntegerField(blank=True,null=True)
+
+    def __str__(self):
+        self.end_time
+
+
 class VideoMaker(models.Model):
     # "type": <vo|bg_music|video_music>",
     CHOICE_SELECT = [
@@ -15,8 +24,8 @@ class VideoMaker(models.Model):
     low_volume = models.PositiveIntegerField()
     video_component_id = models.CharField(max_length=300,null=True,blank=True)
     url = models.URLField(blank=True,null=True)
-    start_time = models.PositiveIntegerField(blank=True,null=True)
-    end_time = models.PositiveIntegerField(blank=True,null=True)
+    duration = models.ForeignKey(Duration, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.id
+
