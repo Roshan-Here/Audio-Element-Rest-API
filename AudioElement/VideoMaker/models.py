@@ -9,7 +9,8 @@ class VideoMaker(models.Model):
         ('bg_music'),
         ('video_music'),
     )
-    type = models.CharField(max_length=15,choices=CHOICE_SELECT)
+    # changed type -> typee (inbuild eerror)
+    typee = models.CharField(max_length=15,choices=CHOICE_SELECT)
     high_volume = models.PositiveIntegerField()
     low_volume = models.PositiveIntegerField()
     video_component_id = models.CharField(max_length=300,null=True,blank=True)
