@@ -4,6 +4,7 @@ from .models import VideoMaker
 
 class VideoMakerSerializer(serializers.ModelSerializer):
     class Meta:
+        model = VideoMaker
         fields = [
             'typee',
             'high_volume',

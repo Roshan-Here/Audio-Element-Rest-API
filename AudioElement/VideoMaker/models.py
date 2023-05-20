@@ -4,11 +4,11 @@ from django.db import models
 
 class VideoMaker(models.Model):
     # "type": <vo|bg_music|video_music>",
-    CHOICE_SELECT = (
-        ('vo'),
-        ('bg_music'),
-        ('video_music'),
-    )
+    CHOICE_SELECT = [
+        ('vo','voice over'),
+        ('bg_music','backgournd music'),
+        ('video_music','vidio music'),
+    ]
     # changed type -> typee (inbuild eerror)
     typee = models.CharField(max_length=15,choices=CHOICE_SELECT)
     high_volume = models.PositiveIntegerField()

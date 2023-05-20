@@ -1,8 +1,8 @@
 import requests
 
-endpoint = ''
+endpoint = 'http://localhost:8000/Api/'
 
-result = requests.get(endpoint)
+result = requests.get(endpoint, json={'check':'hellooo'})
 
 
 print(result.json())
