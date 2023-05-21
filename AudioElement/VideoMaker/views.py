@@ -3,40 +3,47 @@ from django.shortcuts import render
 # Create your views here.
 
 from rest_framework import generics
-from .models import VideoMaker
+from .models import VideoMaker, Duration
 from .serializers import VideoMakerSerializer
 
 
 from rest_framework.response import Response
+from rest_framework import status
 
 
-class AudioCreateApiView(generics.CreateAPIView):
+class AudioCreateApiView(generics.ListCreateAPIView):
     queryset = VideoMaker.objects.all()
     serializer_class = VideoMakerSerializer
 
-    def perform_create(self, serializer):
-        duration_data = serializer.validated_data
-        print(duration_data)
-        return Response(status=201)
-    #     duration_data = serializer.validated_data.pop('duration')
+    def perform_create(self, validated_data):
+        datas = validated_data.pop('duration')
+        duration_data = VideoMaker.objects.create(**validated_data)
+        for audio in datas:
+            Duration.objects.create(duration=duration_data,**datas)
+        return duration_data
+
+
+    # def create(self, validated_data):
+    #     albums_data = validated_data.pop('album_musician')
+    #     musician = Musician.objects.create(**validated_data)
+    #     for album_data in albums_data:
+    #         Album.objects.create(artist=musician, **album_data)
+    #     return musician
+
+    #     nice = duration_data.get('end_time')
+    #     stime = duration_data.get('start_time')
     #     print(duration_data)
-    #     # print(duration_data.get('start_time'))
-    #     vidmaker = VideoMaker.objects.create(**serializer.validated_data)
-    #     starttime = duration_data.get('start_time')
-    #     endtime = duration_data.get('end_time')
-    #     print(starttime,endtime)
-    #     print(serializer.validated_data)
-        # VideoMakerSerializer.objects.create(start_time=starttime, end_time=endtime,**duration_data)
-        # print(VideoMaker.objects.all)
-        # return vidmaker
+    #     print(nice,stime)
+    #     wow = Duration.objects.set(end_time=nice,start_time=stime)
+    #     wow.save()
+
+    #     vidmaker = VideoMaker.objects.create(duration=wow,**serializer.validated_data)
+    #     return vidmaker
+        # super().perform_create(serializer)
 
 
-    # def perform_save(self,serializer):
-    #     start_time = serializer.validated_data.get('start_time')
-    #     end_time = serializer.validated_data.get('end_time')
-    #     serializer.save(start_time=start_time,end_time=end_time)
 
-
-class AudioListApiView(generics.ListAPIView):
+class AudioListApiView(generics.RetrieveAPIView):
     queryset = VideoMaker.objects.all()
     serializer_class = VideoMakerSerializer
+    lookup_field = 'pk'
