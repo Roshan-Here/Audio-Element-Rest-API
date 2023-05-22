@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('',views.AudioCreateApiView.as_view(),name='VideoMakerpage'),
-    path('<int:pk>/detail',views.AudioListApiView.as_view(),name='VideoMakerList'),
+    path('<int:pk>',views.AudioListApiView.as_view(),name='VideoMakerList'),
 ]
