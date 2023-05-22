@@ -27,4 +27,12 @@ class AudioUpdateApiView(generics.UpdateAPIView):
     queryset = VideoMaker.objects.all()
     serializer_class = VideoMakerSerializer
     lookup_field = 'pk'
+
+
+class AudioDeleteApiView(generics.DestroyAPIView):
+    queryset = VideoMaker.objects.all()
+    serializer_class = VideoMakerSerializer
+    lookup_field = 'pk'    
     
+    def perform_destroy(self,instance):
+        super().perform_destroy(instance)
