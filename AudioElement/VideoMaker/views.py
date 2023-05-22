@@ -15,12 +15,12 @@ class AudioCreateApiView(generics.ListCreateAPIView):
     queryset = VideoMaker.objects.all()
     serializer_class = VideoMakerSerializer
 
-    def perform_create(self, validated_data):
-        datas = validated_data.pop('duration')
-        duration_data = VideoMaker.objects.create(**validated_data)
-        for audio in datas:
-            Duration.objects.create(duration=duration_data,**datas)
-        return duration_data
+    # def perform_create(self, validated_data):
+    #     datas = validated_data.pop('duration')
+    #     duration_data = VideoMaker.objects.create(**validated_data)
+    #     for audio in datas:
+    #         Duration.objects.create(duration=duration_data,**audio)
+    #     return duration_data
 
 
     # def create(self, validated_data):

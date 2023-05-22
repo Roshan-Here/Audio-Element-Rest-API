@@ -26,17 +26,11 @@ class VideoMakerSerializer(serializers.ModelSerializer):
             'duration',
         ]
 
-    
-        # print(validated_data.id)
-        # print(data.pk)
-    #     return VideoMaker.objects.create(**validated_data)
-
-    # def create(self, validated_data):
-    #     albums_data = validated_data.pop('album_musician')
-    #     musician = Musician.objects.create(**validated_data)
-    #     for album_data in albums_data:
-    #         Album.objects.create(artist=musician, **album_data)
-    #     return musician
-
-
-        # set video_duration.id = videomaker.id->
+    def create(self, validated_data):
+        duration_data = validated_data.pop('duration')
+        duration_serializer = DuratinSeriaizer(data=duration_data)
+        duration_serializer.is_valid(raise_exception=True)
+        duration = duration_serializer.save()
+        validated_data['duration'] = duration
+        video_maker = VideoMaker.objects.create(**validated_data)
+        return video_maker

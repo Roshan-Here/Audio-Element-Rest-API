@@ -11,6 +11,7 @@ class Duration(models.Model):
         self.end_time
 
 
+
 class VideoMaker(models.Model):
     # "type": <vo|bg_music|video_music>",
     CHOICE_SELECT = [
@@ -24,7 +25,7 @@ class VideoMaker(models.Model):
     low_volume = models.PositiveIntegerField()
     video_component_id = models.CharField(max_length=300,null=True,blank=True)
     url = models.URLField(blank=True,null=True)
-    duration = models.ForeignKey(Duration, on_delete=models.CASCADE)
+    duration = models.ForeignKey(Duration, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.id
