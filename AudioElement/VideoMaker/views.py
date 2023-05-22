@@ -21,3 +21,10 @@ class AudioListApiView(generics.RetrieveAPIView):
     queryset = VideoMaker.objects.all()
     serializer_class = VideoMakerSerializer
     lookup_field = 'pk'
+
+
+class AudioUpdateApiView(generics.UpdateAPIView):
+    queryset = VideoMaker.objects.all()
+    serializer_class = VideoMakerSerializer
+    lookup_field = 'pk'
+    

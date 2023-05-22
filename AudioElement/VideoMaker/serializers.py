@@ -34,3 +34,17 @@ class VideoMakerSerializer(serializers.ModelSerializer):
         validated_data['duration'] = duration
         video_maker = VideoMaker.objects.create(**validated_data)
         return video_maker
+
+    def update(self, instance, validated_data):
+        # got hlp frm stackoverflow
+        duration_data = validated_data.pop('duration')
+        duration_serializer = DuratinSeriaizer(instance.duration, data=duration_data)
+        duration_serializer.is_valid(raise_exception=True)
+        duration = duration_serializer.save()
+
+        instance.duration = duration
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        instance.save()
+        return instance
