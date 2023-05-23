@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
-class AudioCreateApiView(generics.ListCreateAPIView):
+class AudioCreateApiView(generics.CreateAPIView):
     queryset = VideoMaker.objects.all()
     serializer_class = VideoMakerSerializer
 
@@ -36,3 +36,9 @@ class AudioDeleteApiView(generics.DestroyAPIView):
     
     def perform_destroy(self,instance):
         super().perform_destroy(instance)
+
+
+class AudioCreateApiView(generics.ListAPIView):
+    queryset = VideoMaker.objects.all()
+    serializer_class = VideoMakerSerializer
+    
