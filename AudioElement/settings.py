@@ -63,7 +63,6 @@ else:
     }
 }
 
-django_heroku.settings(locals())
 
 # Application definition
 
@@ -111,6 +110,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "AudioElement.wsgi.application"
 
+django_heroku.settings(locals())
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
