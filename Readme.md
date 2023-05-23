@@ -50,7 +50,7 @@ python manage.py runserver
 
 ```console
 To fetch all Datas:
-https://rst-api.herokuapp.com/Api/VideoMaker/all
+https://rst-api.herokuapp.com/Api/all
 
 To Create Audio Element:
 https://rst-api.herokuapp.com/Api/VideoMaker/

@@ -38,7 +38,6 @@ class AudioDeleteApiView(generics.DestroyAPIView):
         super().perform_destroy(instance)
 
 
-class AudioCreateApiView(generics.ListAPIView):
+class AudioListView(generics.ListAPIView):
     queryset = VideoMaker.objects.all()
     serializer_class = VideoMakerSerializer
-    

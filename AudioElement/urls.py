@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from VideoMaker import views
 
 urlpatterns = [
     path("leo/admin/", admin.site.urls),
     path('Api/',include('API.urls')),
     path('Api/VideoMaker/',include('VideoMaker.urls')),
+    path('Api/all',views.AudioListView.as_view(),name='VideoMakerViewAll'),
 ]
