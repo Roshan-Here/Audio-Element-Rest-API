@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,10 +24,46 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-j$ujmzfno_c$8s6fn3db-y0lw$29232u@0&^4+jo-_!yh$@jv&"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
+# FETCH these frm hroku
+HEROKU = bool(os.environ.get("HEROKU",False))
+DBENGINE = os.environ.get('ENGINE')
+DBNAME = os.environ.get('DBNAME')
+DBUSER = os.environ.get('DBUSER')
+DBPASS = os.environ.get('DBPASS')
+DBHOST = os.environ.get('DBHOST')
+DBPORT = os.environ.get('DBPORT') 
+
+
+
+if HEROKU == True:
+    ALLOWED_HOSTS = ['*']
+    DEBUG = False
+    DATABASES = {
+        "default": {
+        "ENGINE": DBENGINE,
+        "NAME": DBNAME,
+        "USER": DBUSER,
+        "PASSWORD": DBPASS,
+        'HOST': DBHOST,
+        'PORT': DBPORT,
+    }
+}
+
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = []
+    DATABASES = {
+        "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
+
+django_heroku.settings(locals())
 
 # Application definition
 
@@ -76,12 +113,6 @@ WSGI_APPLICATION = "AudioElement.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
