@@ -2,7 +2,7 @@
 	"video_blocks": [
 		{
 			"id": "xyz",
-			"type": "video",
+			"typee": "video",
 			"audio_id": "abc",
 			"url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
 			"duration": {
@@ -14,8 +14,8 @@
 	"audio_blocks": [
 		{
 			"id": "123",
-			"type": "vo",
-			"video_component_id": null,
+			"typee": "vo",
+			"video_component_id": "",
 			"high_volume": 100,
 			"low_volume": 75,
 			"duration": {
@@ -26,8 +26,8 @@
 		},
 		{
 			"id": "456",
-			"type": "bg_music",
-			"video_component_id": null,
+			"typee": "bg_music",
+			"video_component_id": "",
 			"high_volume": 100,
 			"low_volume": 25,
 			"duration": {
@@ -38,12 +38,12 @@
 		},
 		{
 			"id": "abc",
-			"type": "video_audio",
+			"typee": "video_audio",
 			"video_component_id": "xyz",
 			"high_volume": 50,
 			"low_volume": 50,
-			"duration": null,
-			"url": null
+			"duration": "",
+			"url": ""
 		}
 	]
 }
